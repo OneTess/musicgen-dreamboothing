@@ -1,0 +1,4 @@
+Another error not stopping the training process but which looks kind of important: 
+
+It's strongly recommended to pass the `sampling_rate` argument to `ClapFeatureExtractor()`. Failing to do so can result in silent errors that might be hard to debug.
+

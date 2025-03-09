@@ -1,0 +1,2 @@
+In the repo (https://github.com/ylacombe/musicgen-dreamboothing?tab=readme-ov-file#how-do-i-use-audio-files-that-i-have-with-your-training-code) author was training the LoRA on 27 minutes of audio. You have 721*30/3600 = 6hrs of audio. This might be too much.
+JUST AN UNEDUCATED GUESS though, not sure if LoRAs are prone to overfitting at all.

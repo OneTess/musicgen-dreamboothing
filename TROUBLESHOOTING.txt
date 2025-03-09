@@ -1,1 +1,5 @@
-If there is some issue with audio quality, try clearing the dataset directory (/home/onetessone/ai/musicgen-dreamboothing/datasets/0007-dataset) before running musicgen_dreamboothing.py. No idea how those .arrow files play with each other.
+The last issue that showed up: ValueError: num_samples should be a positive integer value, but got num_samples=0. 
+ seems to have been resolved by setting max_duration_in_seconds of the training script arguments to 31 instead of 30. Apparently my 30s chunks were too precisely cut and the filter was just leaving them out since they were not fitting between specified min_duration_in_seconds 1.0 and max_duration_in_seconds 30.
+ 
+Now (20250309-200435) the script is running a progress bar "Apply encodec:" from 0 to 721. 721 is the amount of my .wav files.
+There is also a warning which will be shown only once: See "Screenshot from 2025-03-09 20-01-06.png" for more details.

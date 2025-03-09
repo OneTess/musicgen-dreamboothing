@@ -48,10 +48,15 @@ from multiprocess import set_start_method
 # OneTess start -- see local-datasets-instructions.txt for more details. Located in the directory of this file.
 
 from datasets import Audio
+from datasets import load_from_disk
 
 dataset_folder_path = "/home/onetessone/ai/musicgen-dreamboothing/datasets/0007-dataset"
 
 csv_file_path = "/home/onetessone/ai/musicgen-dreamboothing/datasets/_tracklists/0000-tracklist.csv"
+
+ds = load_from_disk(dataset_folder_path)
+print("Dataset length: ", len(ds["train"]))
+print(ds["train"][0])
 
 print(os.listdir(r"/home/onetessone/ai/musicgen-dreamboothing/datasets"))
 with open(csv_file_path, "r") as f:
