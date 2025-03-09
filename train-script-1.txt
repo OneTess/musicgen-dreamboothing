@@ -1,0 +1,39 @@
+python dreambooth_musicgen.py \
+    --use_lora \
+    --model_name_or_path "facebook/musicgen-melody" \
+    --dataset_name "/home/onetessone/ai/musicgen-dreamboothing/datasets/0007-dataset" \
+    --dataset_config_name "default" \
+    --target_audio_column_name "audio" \
+    --instance_prompt "phonk" \
+    --train_split_name "train" \
+    --eval_split_name "train" \
+    --output_dir "./musicgen-melody-lora-local" \
+    --do_train \
+    --fp16 \
+    --num_train_epochs 4 \
+    --gradient_accumulation_steps 8 \
+    --gradient_checkpointing \
+    --per_device_train_batch_size 2 \
+    --learning_rate 2e-4 \
+    --adam_beta1 0.9 \
+    --adam_beta2 0.99 \
+    --weight_decay 0.1 \
+    --guidance_scale 3.0 \
+    --do_eval \
+    --predict_with_generate \
+    --include_inputs_for_metrics \
+    --eval_steps 25 \
+    --evaluation_strategy "steps" \
+    --per_device_eval_batch_size 1 \
+    --max_eval_samples 8 \
+    --generation_max_length 400 \
+    --dataloader_num_workers 8 \
+    --logging_steps 1 \
+    --max_duration_in_seconds 30 \
+    --min_duration_in_seconds 1.0 \
+    --preprocessing_num_workers 8 \
+    --pad_token_id 2048 \
+    --decoder_start_token_id 2048 \
+    --seed 456 \
+    --overwrite_output_dir
+

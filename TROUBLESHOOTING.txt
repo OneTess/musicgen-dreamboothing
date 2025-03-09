@@ -1,0 +1,1 @@
+If there is some issue with audio quality, try clearing the dataset directory (/home/onetessone/ai/musicgen-dreamboothing/datasets/0007-dataset) before running musicgen_dreamboothing.py. No idea how those .arrow files play with each other.

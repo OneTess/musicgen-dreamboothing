@@ -25,7 +25,7 @@ from typing import Dict, List, Optional, Union
 import datasets
 import numpy as np
 import torch
-from datasets import DatasetDict, load_dataset
+from datasets import DatasetDict, load_dataset # OneTess: https://github.com/ylacombe/musicgen-dreamboothing?tab=readme-ov-file#how-do-i-use-audio-files-that-i-have-with-your-training-code
 
 import transformers
 from transformers import (
@@ -45,6 +45,29 @@ from transformers.utils.versions import require_version
 from transformers.integrations import is_wandb_available
 from multiprocess import set_start_method
 
+# OneTess start -- see local-datasets-instructions.txt for more details. Located in the directory of this file.
+
+from datasets import Audio
+
+dataset_folder_path = "/home/onetessone/ai/musicgen-dreamboothing/datasets/0007-dataset"
+
+csv_file_path = "/home/onetessone/ai/musicgen-dreamboothing/datasets/_tracklists/0000-tracklist.csv"
+
+print(os.listdir(r"/home/onetessone/ai/musicgen-dreamboothing/datasets"))
+with open(csv_file_path, "r") as f:
+	print (f)
+	
+dataset = DatasetDict.from_csv({"train": csv_file_path})
+print("Loaded training samples:", len(dataset["train"]))
+
+dataset = dataset.cast_column("audio", Audio())
+
+dataset.save_to_disk("/home/onetessone/ai/musicgen-dreamboothing/datasets/0007-dataset")
+
+# TODO : ds = load_from_disk("path/to/dataset/directory")
+#  See https://huggingface.co/docs/datasets/v2.19.0/en/package_reference/main_classes#datasets.Dataset.load_from_disk for more details
+
+# OneTess end
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 check_min_version("4.40.0.dev0")
@@ -523,7 +546,7 @@ def main():
             )
         from demucs.apply import apply_model
         from demucs.audio import convert_audio
-        from datasets import Audio
+        # from datasets import Audio
 
         demucs = pretrained.get_model("htdemucs")
         if torch.cuda.device_count() > 0:
